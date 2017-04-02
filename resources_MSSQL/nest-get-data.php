@@ -146,8 +146,8 @@ elseif ($datatype === 'daily') {
 		$result = sqlsrv_query($con,"SELECT date FROM dbo.energy_reports WHERE date = '".$day->day."'");
 		$row_count = sqlsrv_num_rows($result);
 		
-		//if($result->num_rows == 0) {
-		if($row_count === 0){
+		if($result->num_rows == 0) { 
+		//if($row_count === 0){
 			//Insert Current Values into Nest Database Table
 			$sql = "INSERT INTO dbo.energy_reports (
 					 [date]
@@ -177,11 +177,12 @@ elseif ($datatype === 'daily') {
 					)";
             //$result = $con->query($sql); //or trigger_error('SQL: ' . $sql . ' Error: ' . $con->error, E_USER_ERROR);
 			$result = sqlsrv_query($con, $sql); 
-			if( $result === false ) {
-				die( print_r( sqlsrv_errors(), true));
-				}
+			//if( $result === false ) {
+				//die( print_r( sqlsrv_errors(), true));
+				//}
 			}
 		}
 	}
 //Close SQL DB connection
 sqlsrv_close( $con );
+
